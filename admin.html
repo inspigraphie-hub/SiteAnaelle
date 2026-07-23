@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestion du blog — Anaëlle S.G.</title>
+  <link rel="stylesheet" href="./index-CTTx8M8e.css">
+  <style>
+    body{padding:0;background:#f4f3ee;color:#48372f}
+    .admin-header{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px clamp(20px,5vw,70px);border-bottom:1px solid #48372f33;background:#fffdfa}
+    .admin-header strong{font:italic 1.6rem "DM Serif Display",serif}
+    .admin-header a{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+    .admin-main{max-width:1050px;margin:auto;padding:55px 24px 100px}
+    .login-panel{max-width:560px;margin:35px auto;padding:34px;background:#fffdfa;border-top:4px solid #c8a1b1}
+    .login-panel h1{font-size:clamp(2.4rem,7vw,4rem)}
+    .login-panel label{display:block;margin:17px 0 6px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .login-panel input{width:100%;padding:12px 13px;border:1px solid #48372f44;background:white;color:#48372f;font:inherit}
+    .login-panel button{width:100%;margin-top:20px;padding:13px;border:0;background:#48372f;color:white;font-weight:700;cursor:pointer}
+    .admin-intro{max-width:720px;margin-bottom:35px}
+    .admin-intro h1{font-size:clamp(2.7rem,7vw,5rem)}
+    .admin-note{padding:18px 20px;background:#e8d6dc;border-left:3px solid #c8a1b1}
+    .admin-actions{position:sticky;z-index:5;top:0;display:flex;flex-wrap:wrap;gap:10px;margin:30px 0;padding:14px 0;background:#f4f3eef2;backdrop-filter:blur(8px)}
+    .admin-actions button,.article-admin button{padding:11px 16px;border:1px solid #48372f;background:#fffdfa;color:#48372f;font-weight:700;cursor:pointer}
+    .admin-actions .primary{background:#48372f;color:white}
+    .article-admin{margin:0 0 24px;padding:28px;background:#fffdfa;border-top:4px solid #c8a1b1}
+    .article-admin-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}
+    .article-admin h2{font-size:1.8rem}
+    .article-admin label{display:block;margin:17px 0 6px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .article-admin input,.article-admin select,.article-admin textarea{width:100%;padding:12px 13px;border:1px solid #48372f44;background:white;color:#48372f;font:inherit}
+    .article-admin textarea{min-height:105px;resize:vertical}
+    .article-admin .paragraphs{min-height:190px}
+    .two-columns{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .status{min-height:24px;color:#4e4a2e;font-weight:700}
+    @media(max-width:650px){.admin-header{align-items:flex-start;flex-direction:column}.two-columns{grid-template-columns:1fr}.article-admin{padding:20px}.admin-actions button{flex:1 1 45%}}
+  </style>
+</head>
+<body>
+  <header class="admin-header">
+    <strong>Anaëlle S.G. — Gestion du blog</strong>
+    <a href="./index.html#blog">Voir le blog →</a>
+  </header>
+  <main class="admin-main">
+    <section class="login-panel" id="login-panel">
+      <p class="eyebrow">Accès propriétaire</p>
+      <h1>Connexion au blog.</h1>
+      <p>Utilisez le compte créé dans Firebase Authentication.</p>
+      <form id="login-form">
+        <label for="admin-identifier">Identifiant</label>
+        <input id="admin-identifier" type="text" value="anaelleSG" autocomplete="username" required>
+        <label for="admin-password">Mot de passe</label>
+        <input id="admin-password" type="password" autocomplete="current-password" required>
+        <button type="submit">Se connecter</button>
+      </form>
+      <p class="status" id="login-status" role="status"></p>
+    </section>
+    <div id="editor-panel" hidden>
+    <div class="admin-intro">
+      <p class="eyebrow">Mise à jour simplifiée</p>
+      <h1>Gérer les articles.</h1>
+      <p>Ajoutez, corrigez ou supprimez les articles, puis téléchargez le nouveau fichier du blog.</p>
+    </div>
+    <p class="admin-note"><strong>Publication directe :</strong> les modifications enregistrées ici sont envoyées dans Firestore et apparaissent automatiquement sur le site.</p>
+    <div class="admin-actions">
+      <button id="add-article" type="button">+ Nouvel article</button>
+      <button id="save-all" class="primary" type="button">Enregistrer toutes les modifications</button>
+      <button id="logout" type="button">Se déconnecter</button>
+    </div>
+    <p class="status" id="admin-status" role="status"></p>
+    <div id="article-editor"></div>
+    </div>
+  </main>
+  <script src="./blog-data.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+  <script src="./admin.js"></script>
+</body>
+</html>
